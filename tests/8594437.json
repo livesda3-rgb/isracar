@@ -1,0 +1,153 @@
+{
+  "plate": 8594437,
+  "status": 200,
+  "cors": "*",
+  "sent_cookies": false,
+  "url": "https://data.gov.il/api/3/action/datastore_search?resource_id=053cea08-09bc-40ec-8f7a-156f0677aff3&filters=%7B%22mispar_rechev%22%3A+8594437%7D&limit=10",
+  "response": {
+    "help": "https://data.gov.il/api/3/action/help_show?name=datastore_search",
+    "success": true,
+    "result": {
+      "filters": {
+        "mispar_rechev": 8594437
+      },
+      "include_total": true,
+      "limit": 10,
+      "records_format": "objects",
+      "resource_id": "053cea08-09bc-40ec-8f7a-156f0677aff3",
+      "total_estimation_threshold": null,
+      "records": [
+        {
+          "_id": 3150066,
+          "mispar_rechev": 8594437,
+          "tozeret_cd": 653,
+          "sug_degem": "P",
+          "tozeret_nm": "ניסאן הודו",
+          "degem_cd": 7,
+          "degem_nm": "FBUK13",
+          "ramat_gimur": "VISIA",
+          "ramat_eivzur_betihuty": null,
+          "kvutzat_zihum": 12,
+          "shnat_yitzur": 2016,
+          "degem_manoa": "HR12",
+          "mivchan_acharon_dt": "2026-08-28",
+          "tokef_dt": "2027-09-11",
+          "baalut": "פרטי",
+          "misgeret": "MDH*FBUK13*U0323822",
+          "tzeva_cd": 80,
+          "tzeva_rechev": "שנהב לבן",
+          "zmig_kidmi": "165/70R14",
+          "zmig_ahori": "165/70R14",
+          "sug_delek_nm": "בנזין",
+          "horaat_rishum": 160175,
+          "moed_aliya_lakvish": "2016-9",
+          "kinuy_mishari": "MICRA"
+        }
+      ],
+      "fields": [
+        {
+          "id": "_id",
+          "type": "int"
+        },
+        {
+          "id": "mispar_rechev",
+          "type": "numeric"
+        },
+        {
+          "id": "tozeret_cd",
+          "type": "numeric"
+        },
+        {
+          "id": "sug_degem",
+          "type": "text"
+        },
+        {
+          "id": "tozeret_nm",
+          "type": "text"
+        },
+        {
+          "id": "degem_cd",
+          "type": "numeric"
+        },
+        {
+          "id": "degem_nm",
+          "type": "text"
+        },
+        {
+          "id": "ramat_gimur",
+          "type": "text"
+        },
+        {
+          "id": "ramat_eivzur_betihuty",
+          "type": "numeric"
+        },
+        {
+          "id": "kvutzat_zihum",
+          "type": "numeric"
+        },
+        {
+          "id": "shnat_yitzur",
+          "type": "numeric"
+        },
+        {
+          "id": "degem_manoa",
+          "type": "text"
+        },
+        {
+          "id": "mivchan_acharon_dt",
+          "type": "text"
+        },
+        {
+          "id": "tokef_dt",
+          "type": "text"
+        },
+        {
+          "id": "baalut",
+          "type": "text"
+        },
+        {
+          "id": "misgeret",
+          "type": "text"
+        },
+        {
+          "id": "tzeva_cd",
+          "type": "numeric"
+        },
+        {
+          "id": "tzeva_rechev",
+          "type": "text"
+        },
+        {
+          "id": "zmig_kidmi",
+          "type": "text"
+        },
+        {
+          "id": "zmig_ahori",
+          "type": "text"
+        },
+        {
+          "id": "sug_delek_nm",
+          "type": "text"
+        },
+        {
+          "id": "horaat_rishum",
+          "type": "numeric"
+        },
+        {
+          "id": "moed_aliya_lakvish",
+          "type": "text"
+        },
+        {
+          "id": "kinuy_mishari",
+          "type": "text"
+        }
+      ],
+      "_links": {
+        "start": "/api/3/action/datastore_search?resource_id=053cea08-09bc-40ec-8f7a-156f0677aff3&filters=%7B%22mispar_rechev%22%3A+8594437%7D&limit=10",
+        "next": "/api/3/action/datastore_search?resource_id=053cea08-09bc-40ec-8f7a-156f0677aff3&filters=%7B%22mispar_rechev%22%3A+8594437%7D&limit=10&offset=10"
+      },
+      "total": 1,
+      "total_was_estimated": false
+    }
+  }
+}
