@@ -1,0 +1,11 @@
+export const HISTORY_RESOURCES=['56063a99-8a3e-4ff4-912e-5966c0279bad','bb2355dc-9ec7-4f06-9c3f-3344672171da'];
+const cache=new Map();export const HISTORY_TTL=15*60*1000;
+export function historyURL(plate,resource,offset=0){const u=new URL('https://data.gov.il/api/3/action/datastore_search');u.searchParams.set('resource_id',resource);u.searchParams.set('filters',JSON.stringify({mispar_rechev:Number(plate)}));u.searchParams.set('limit','100');u.searchParams.set('offset',offset);return u.href;}
+export async function loadHistory(plate,{fetcher=fetch,signal,now=Date.now(),refresh=false}={}){
+ const saved=cache.get(plate);if(!refresh&&saved&&now-saved.retrievedAt<HISTORY_TTL)return {...saved,cached:true};
+ const controller=new AbortController(),abort=()=>controller.abort();if(signal?.aborted)throw new Error('Aborted');signal?.addEventListener('abort',abort,{once:true});const timer=setTimeout(abort,12000);
+ try{
+ const outcomes=await Promise.allSettled(HISTORY_RESOURCES.map(async resource=>{let rows=[],offset=0;for(;;){const response=await fetcher(historyURL(plate,resource,offset),{credentials:'omit',signal:controller.signal,cache:'no-store',headers:{Accept:'application/json'}});if(!response.ok)throw new Error('History HTTP error');const data=await response.json();if(data.success!==true||!Array.isArray(data.result?.records))throw new Error('History CKAN error');rows.push(...data.result.records.filter(r=>String(Number(r.mispar_rechev))===plate));if(data.result.records.length<100||offset+100>=Number(data.result.total??Infinity))return rows;if(offset>=900)throw new Error('History pagination limit');offset+=100;}}));
+ if(signal?.aborted)throw new Error('Aborted');const result={snapshots:outcomes[0].status==='fulfilled'?outcomes[0].value:[],ownership:outcomes[1].status==='fulfilled'?outcomes[1].value:[],errors:outcomes.map((r,i)=>r.status==='rejected'?HISTORY_RESOURCES[i]:null).filter(Boolean),retrievedAt:now,cached:false};result.ownership.sort((a,b)=>Number(a.baalut_dt)-Number(b.baalut_dt));if(!result.errors.length){cache.set(plate,result);if(cache.size>20)cache.delete(cache.keys().next().value);}return result;
+ }finally{clearTimeout(timer);signal?.removeEventListener('abort',abort);}
+}

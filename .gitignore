@@ -1,2 +1,5 @@
 .DS_Store
 node_modules/
+
+# Raw plate-linked history verification responses stay local.
+tests/history-*.json

@@ -1,0 +1,2 @@
+// Confirmed public landing pages only: no guessed VIN URL parameters or automated catalog extraction.
+export function partsCatalogs(vehicle){const maker=String(vehicle.tozeret_nm||'').toLowerCase();const result=[{id:'7zap',url:'https://7zap.com/en/vin-decoder/'}];if(/ניסאן|יונדאי|טויוטה|לקסוס|קיה|מאזדה|מיצובישי|סובארו|סוזוקי|הונדה|איסוזו|רנו|nissan|hyundai|toyota|lexus|kia|mazda|mitsubishi|subaru|suzuki|honda|isuzu|renault/.test(maker))result.push({id:'PartSouq',url:'https://partsouq.com/en/catalog/genuine'});return result;}

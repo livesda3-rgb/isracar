@@ -1,1 +1,1 @@
-{"name":"isracar","private":true,"type":"module","scripts":{"test":"node --test tests/registry.test.mjs"}}
+{"name":"isracar","private":true,"type":"module","scripts":{"test":"node --test"}}

@@ -1,6 +1,6 @@
 # IsraCar
 
-Buildless PWA: deploy `docs/` to any HTTPS static host (including GitHub Pages). English by default, Russian and Hebrew/RTL. No API keys or dependencies. Serve the folder over HTTP for local testing; opening index.html via file:// is unsupported.
+Buildless PWA: deploy `docs/` to any HTTPS static host (including GitHub Pages). Device-language detection (English fallback), saved manual RU/EN/HE selection and RTL. No API keys or dependencies. Serve the folder over HTTP for local testing; opening index.html via file:// is unsupported.
 
 ## Verified API results — 18 October 2026
 
@@ -21,7 +21,7 @@ Requests use credentials: omit. Exact filter first, q fallback on an unsupported
 
 20-second timeout; invalid input, missing records, offline, malformed CKAN responses and request errors handled. Source values are shown unaltered in their original language. All returned registration fields are displayed with translated labels. No claim that the dataset covers every Israeli vehicle category. No fluids or service specifications are inferred.
 
-Service worker caches app shell only, never API responses. The interface can open offline; new lookups need internet. Installation depends on browser/OS PWA support. On iOS use Share > Add to Home Screen. HTTPS is required except localhost. No analytics or stored vehicle history. Language preference is stored locally.
+Service worker caches app shell only, never API responses. The interface can open offline; new lookups need internet. Installation depends on browser/OS PWA support. On iOS use Share > Add to Home Screen. HTTPS is required except localhost. No analytics or persistent vehicle history. Manual language preference is stored locally. History is cached in session memory for 15 minutes.
 
 ## Validation
 
@@ -37,3 +37,7 @@ Browser QA: live Nissan lookup succeeded directly from the local app; English, R
 Publish the `main` branch, `/docs` folder from Settings → Pages. No build step or dependencies. Subsequent commits to docs automatically update the public app.
 
 Application: https://livesda3-rgb.github.io/isracar/
+
+## Extension release — 19 October 2026
+
+See [RELEASE.md](RELEASE.md) for features, validation, limitations, changed files and rollback; [SOURCES.md](SOURCES.md) for source access and licensing. Automatic valuation and OEM service specifications are not connected.
