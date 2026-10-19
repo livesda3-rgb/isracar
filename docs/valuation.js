@@ -15,3 +15,10 @@ export async function loadValuations(vehicle){
  // No price endpoints are enabled: a provider contract and reliable trim mapping are still required.
  return aggregateValuations([],{identityKey:String(vehicle.mispar_rechev)});
 }
+
+// Levi Yitzhak is the only eligible price source for the primary card. A website listing is not a licensed quote.
+export function leviEstimates(prices,vehicle,options={}){
+ const rows=prices?.estimates??(prices?.groups||[]).flatMap(g=>g.rows||[]);
+ const eligible=rows.filter(e=>e.sourceId==='levi-yitzhak'&&e.authorized===true);
+ return aggregateValuations(eligible,{...options,identityKey:String(vehicle.mispar_rechev)}).groups.flatMap(g=>g.rows);
+}

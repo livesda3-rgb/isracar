@@ -20,9 +20,30 @@ History GETs without cookies returned HTTP 200, CKAN success=true and CORS `*`. 
 
 Original VIN/tyre regression fixtures are retained from the original application. Browser verification is described in RELEASE.md.
 
-## Valuation contract
+## Current primary price contract (full specification, 19 October)
 
-There are **zero enabled automatic valuation providers**. Production never contains demo prices. The tested aggregator only accepts verified ILS estimates with a source URL, exact vehicle identity, valid current date (default maximum age 30 days), explicit basis, adjustment scope and methodology. It groups only matching method/basis/adjustments/source edition dates; deduplicates sources; preserves individual quotes. A single value remains single. Comparable range endpoints can combine. Different transaction/listing/reference/condition bases stay separate. Provider-specific verification and licensed field mapping must be implemented before enabling a provider.
+Levi Yitzhak is the only eligible primary price source. No licensed Levi provider is configured. The primary card says Price unavailable. Yad2/government prices and cross-source ranges never substitute for it. A future quote must be licensed/authorized, verified, in ILS, current and mapped to the exact vehicle. Only a range supplied by Levi itself can be shown as its range; alternative estimates remain separate details. Older generic aggregation utilities are retained for compatibility/tests, not used to infer a primary Levi price.
+
+## Additional provider investigation
+
+| Provider | Official API / access | Israel, cost and limitations | Confirmed test result |
+| --- | --- | --- | --- |
+| [TecRMI overview](https://tecrmi-services.tecalliance.net/docs/ServiceOverview.html), [REST authentication](https://tecrmi-services.tecalliance.net/docs/ServiceRest.html) | Official SOAP/REST services exist. REST requires Login and an X-AuthToken. Vehicle TypeId plus country and relevant additional identifiers select data. | Israel coverage, entitlement to VIN filtering, charges, quotas and public redistribution require provider confirmation. No credentials or license available in this project. | Documentation only; no authenticated specification/VIN lookup performed. No control-car fluid values obtained. |
+| [Autodata API](https://www.autodata-group.com/corporate/api/), [technical docs](https://developer.autodata-group.com/docs) | Official licensed technical-content API documented for third-party integration. | Exact Israeli variants, gearbox-level identification, price and public-site redistribution rights unconfirmed; no project credentials. | Documentation only; no licensed control-VIN responses. |
+| [MOTUL Oil Advisor](https://www.motul.com/en-DE/lubricants) | Public interactive model/type advisor; not proof of an authorized third-party API. | Catalog distinguishes regions. Israel/VIN fitment, API rights, quotas and commercial integration cost not verified. Lubricant-brand advice must remain distinguished from OEM specification. | Public advisor inspected; no exact control-car recommendation accepted. |
+| [LIQUI MOLY Oil Guide](https://www.liqui-moly.com/en/ca/service/oil-guide.html) | Public interactive guide exists; no authorized public API established. | Regional coverage and precise Israeli engine/gearbox fitment unconfirmed; any integration/redistribution contract and cost unconfirmed. Brand recommendation is not itself an OEM approval source. | Public page inspected; no exact control-car fluid result accepted. |
+
+No hidden API, login bypass, subscription purchase or credential harvesting was used. A future commercial integration would use a minimal serverless endpoint for provider authentication, exact-variant matching, licensed caching and rate limits, with secrets kept outside GitHub Pages. No server is provisioned until credentials, costs, coverage and redistribution rights are confirmed.
+
+## Control-vehicle applicability evidence
+
+| Control VIN | Confirmed source-backed identity | Service results currently accepted |
+| --- | --- | --- |
+| WVWZZZ3CZBP347976 | Government registry: Passat 2011, engine code CDA | Registered tyres 215/55 R16; no gearbox ID, OEM fluid volumes/approvals or wiper dimensions verified. |
+| KMHCT41BEGU025160 | Government registry: Hyundai I25 2015, engine code G4LC | Registered tyres 175/70R14; no gearbox ID, OEM fluid volumes/approvals or wiper dimensions verified. |
+| MDHFBUK13U0323822 | Government registry: Micra 2016, engine code HR12; normalized registry chassis retains raw form | Registered tyres 165/70R14; no gearbox ID, OEM fluid volumes/approvals or wiper dimensions verified. |
+
+Vehicle registration and the history dataset were verified earlier on this same date; their raw plate-linked history data remain local. The history schema provides latest odometer and ownership-type/month records, not a confirmed unique-owner count or full mileage/test chronology. Fetch time and first registration date are not treated as the odometer recording date.
 
 ## Technical-data gaps
 

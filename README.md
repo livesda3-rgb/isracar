@@ -41,3 +41,7 @@ Application: https://livesda3-rgb.github.io/isracar/
 ## Extension release — 19 October 2026
 
 See [RELEASE.md](RELEASE.md) for features, validation, limitations, changed files and rollback; [SOURCES.md](SOURCES.md) for source access and licensing. Automatic valuation and OEM service specifications are not connected.
+
+## Current primary-card contract
+
+The primary card shows last recorded mileage, registration expiry/status, unknown or confirmed owner count, and Levi Yitzhak (Price unavailable until licensed access is connected). Ownership rows do not establish a unique-owner total. Service groups are open, secondary details collapsed. No other valuation substitutes for Levi. See RELEASE.md for the full-specification update and 22-test validation.
